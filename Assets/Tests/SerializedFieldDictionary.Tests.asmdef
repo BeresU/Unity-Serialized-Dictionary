@@ -1,0 +1,16 @@
+{
+    "name": "SerializedFieldDictionary.Tests",
+    "rootNamespace": "SerializedFieldDictionary",
+    "references": [
+        "SerializedFieldDictionary.Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
