@@ -9,6 +9,9 @@ namespace SerializedDictionary.Runtime
     public class SerializedDictionary<TKey, TValue> : IDictionary<TKey, TValue>, ISerializationCallbackReceiver
     {
         [SerializeField] private List<KeyValue<TKey, TValue>> keyValues;
+        
+        [Tooltip("Default value when using GetValueOrDefault method")]
+        [SerializeField] private TValue defaultValue;
 
         private Dictionary<TKey, TValue> Dictionary { get; } = new Dictionary<TKey, TValue>();
 
@@ -30,6 +33,8 @@ namespace SerializedDictionary.Runtime
                 Dictionary.Add(keyValue.Key, keyValue.Value);
             }
         }
+
+        public TValue GetValueOrDefault(TKey key) => Dictionary.TryGetValue(key, out var value) ? value : defaultValue;
 
         public void Add(KeyValuePair<TKey, TValue> item)
         {
