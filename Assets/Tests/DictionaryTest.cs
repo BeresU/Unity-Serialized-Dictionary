@@ -1,12 +1,12 @@
 using System;
-using SerializedFieldDictionary.Runtime;
+using SerializedDictionary.Runtime;
 using UnityEngine;
 
-namespace SerializedFieldDictionary.Tests
+namespace SerializedDictionary.Tests
 {
     public class DictionaryTest : MonoBehaviour
     {
-        [SerializeField] private SerializedFieldDictionary<string, Person> _dictionary;
+        [SerializeField] private SerializedDictionary<string, Person> _dictionary;
         [Serializable]
         public class Person
         {

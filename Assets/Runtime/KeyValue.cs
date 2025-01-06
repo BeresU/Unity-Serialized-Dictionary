@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SerializedFieldDictionary.Runtime
+namespace SerializedDictionary.Runtime
 {
     [System.Serializable]
     internal struct KeyValue<TKey, TValue>

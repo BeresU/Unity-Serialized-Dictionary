@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace SerializedFieldDictionary.Runtime
+namespace SerializedDictionary.Runtime
 {
     [System.Serializable]
-    public class SerializedFieldDictionary<TKey, TValue> : IDictionary<TKey, TValue>, ISerializationCallbackReceiver
+    public class SerializedDictionary<TKey, TValue> : IDictionary<TKey, TValue>, ISerializationCallbackReceiver
     {
         [SerializeField] private List<KeyValue<TKey, TValue>> keyValues;
 

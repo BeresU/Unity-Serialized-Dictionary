@@ -1,6 +1,6 @@
 {
-    "name": "SerializedFieldDictionary.Runtime",
-    "rootNamespace": "SerializedFieldDictionary",
+    "name": "SerializedDictionary.Runtime",
+    "rootNamespace": "SerializedDictionary",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
