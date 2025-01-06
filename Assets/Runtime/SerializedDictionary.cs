@@ -8,7 +8,7 @@ namespace SerializedDictionary.Runtime
     [System.Serializable]
     public class SerializedDictionary<TKey, TValue> : IDictionary<TKey, TValue>, ISerializationCallbackReceiver
     {
-        [SerializeField] private List<KeyValue<TKey, TValue>> keyValues;
+        [SerializeField] private List<KeyValue<TKey, TValue>> fields;
         
         [Tooltip("Default value when using GetValueOrDefault method")]
         [SerializeField] private TValue defaultValue;
@@ -28,7 +28,7 @@ namespace SerializedDictionary.Runtime
 
         public void OnAfterDeserialize()
         {
-            foreach (var keyValue in keyValues.Where(keyValue => !Dictionary.ContainsKey(keyValue.Key)))
+            foreach (var keyValue in fields.Where(keyValue => !Dictionary.ContainsKey(keyValue.Key)))
             {
                 Dictionary.Add(keyValue.Key, keyValue.Value);
             }
@@ -39,7 +39,7 @@ namespace SerializedDictionary.Runtime
         public void Add(KeyValuePair<TKey, TValue> item)
         {
 #if UNITY_EDITOR
-            keyValues.Add(new KeyValue<TKey, TValue>(item.Key, item.Value));
+            fields.Add(new KeyValue<TKey, TValue>(item.Key, item.Value));
 #endif
             Dictionary.Add(item.Key, item.Value);
         }
@@ -47,7 +47,7 @@ namespace SerializedDictionary.Runtime
         public void Clear()
         {
 # if UNITY_EDITOR
-            keyValues.Clear();
+            fields.Clear();
 #endif
             Dictionary.Clear();
         }
@@ -67,9 +67,9 @@ namespace SerializedDictionary.Runtime
         public bool Remove(KeyValuePair<TKey, TValue> item)
         {
 #if UNITY_EDITOR
-            var itemToRemove = keyValues.FirstOrDefault(kvp => kvp.Key.Equals(item.Key));
+            var itemToRemove = fields.FirstOrDefault(kvp => kvp.Key.Equals(item.Key));
 
-            keyValues.Remove(itemToRemove);
+            fields.Remove(itemToRemove);
 #endif
             return Dictionary.Remove(item.Key);
         }
@@ -81,7 +81,7 @@ namespace SerializedDictionary.Runtime
         public void Add(TKey key, TValue value)
         {
 #if UNITY_EDITOR
-            keyValues.Add(new KeyValue<TKey, TValue>(key, value));
+            fields.Add(new KeyValue<TKey, TValue>(key, value));
 #endif
             Dictionary.Add(key, value);
         }
@@ -91,9 +91,9 @@ namespace SerializedDictionary.Runtime
         public bool Remove(TKey key)
         {
 #if UNITY_EDITOR
-            var itemToRemove = keyValues.FirstOrDefault(kvp => kvp.Key.Equals(key));
+            var itemToRemove = fields.FirstOrDefault(kvp => kvp.Key.Equals(key));
 
-            keyValues.Remove(itemToRemove);
+            fields.Remove(itemToRemove);
 #endif
             return Dictionary.Remove(key);
         }

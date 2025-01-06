@@ -343,24 +343,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dictionary:
-    keyValues:
+    fields:
     - key: Udi
       value:
         FirstName: Udi
         LastName: Beres
         Age: 34
-    - key: Shimon
-      value:
-        FirstName: Shimon
-        LastName: Ben Itzik
-        Age: 50
     - key: Shuki
       value:
         FirstName: Shuki
-        LastName: Beres
-        Age: 78
-    - key: Benji
-      value:
-        FirstName: Ben
-        LastName: Best
-        Age: 30
+        LastName: Cohen
+        Age: 50
+    defaultValue:
+      FirstName: 
+      LastName: 
+      Age: 0
