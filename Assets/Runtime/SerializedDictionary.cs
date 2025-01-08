@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace SerializedDictionary.Runtime
     public class SerializedDictionary<TKey, TValue> : IDictionary<TKey, TValue>, ISerializationCallbackReceiver
     {
         [SerializeField] private List<KeyValue<TKey, TValue>> fields;
-        
-        [Tooltip("Default value when using GetValueOrDefault method")]
-        [SerializeField] private TValue defaultValue;
+
+        [Tooltip("Default value when using GetValueOrDefault method")] [SerializeField]
+        private TValue defaultValue;
 
         private Dictionary<TKey, TValue> Dictionary { get; } = new Dictionary<TKey, TValue>();
 
@@ -22,14 +23,18 @@ namespace SerializedDictionary.Runtime
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        public void OnBeforeSerialize()
-        {
-        }
+        public void OnBeforeSerialize() => Dictionary.Clear();
 
         public void OnAfterDeserialize()
         {
-            foreach (var keyValue in fields.Where(keyValue => !Dictionary.ContainsKey(keyValue.Key)))
+            foreach (var keyValue in fields)
             {
+                if (Dictionary.ContainsKey(keyValue.Key))
+                {   
+                    Dictionary.Clear();
+                    throw new Exception($"SerializedDictionary has duplicate key: {keyValue.Key}");
+                }
+
                 Dictionary.Add(keyValue.Key, keyValue.Value);
             }
         }
