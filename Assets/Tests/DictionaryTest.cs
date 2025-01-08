@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using SerializedDictionary.Runtime;
 using UnityEngine;
 
@@ -6,26 +7,44 @@ namespace SerializedDictionary.Tests
 {
     public class DictionaryTest : MonoBehaviour
     {
-        [SerializeField] private SerializedDictionary<string, Person> _dictionary;
+        [SerializeField] private SerializedDictionary<string, Person> dictionary;
+
         [Serializable]
         public class Person
         {
-            public string FirstName;
-            public string LastName;
-            public int Age;
+            public string firstName;
+            public string lastName;
+            public int age;
 
             public override string ToString()
             {
-                return $"{FirstName} {LastName}, {Age}";
+                return $"{firstName} {lastName}, {age}";
             }
         }
 
         private void Awake()
         {
-            foreach (var dictionaryKey in _dictionary.Keys)
+            foreach (var dictionaryKey in dictionary.Keys)
             {
-                Debug.Log($"Dictionary Key: {dictionaryKey}, value: {_dictionary[dictionaryKey]}");
+                Debug.Log($"Dictionary Key: {dictionaryKey}, value: {dictionary[dictionaryKey]}");
             }
+
+            RemoveKeyTest();
+        }
+
+        private void RemoveKeyTest()
+        {
+            var firstKey = dictionary.Keys.FirstOrDefault();
+
+            if (firstKey == null)
+            {
+                Debug.Log("No key to remove");
+                return;
+            }
+
+            Debug.Log($"Removing key {firstKey}");
+
+            dictionary.Remove(firstKey);
         }
     }
 }

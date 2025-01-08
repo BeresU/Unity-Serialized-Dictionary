@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace SerializedDictionary.Runtime
 {
-    [System.Serializable]
+    [Serializable]
     public class SerializedDictionary<TKey, TValue> : IDictionary<TKey, TValue>, ISerializationCallbackReceiver
     {
         [SerializeField] private List<KeyValue<TKey, TValue>> fields;

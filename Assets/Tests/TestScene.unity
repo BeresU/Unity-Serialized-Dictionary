@@ -342,19 +342,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c241f17f882e52e42a7c167b3e4828d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dictionary:
+  dictionary:
     fields:
     - key: Udi
       value:
-        FirstName: Udi
-        LastName: Beres
-        Age: 34
+        firstName: Udi
+        lastName: Beres
+        age: 34
     - key: Shuki
       value:
-        FirstName: Shuki
-        LastName: Cohen
-        Age: 50
+        firstName: Shuki
+        lastName: Beres
+        age: 76
+    - key: Edi
+      value:
+        firstName: Eduard
+        lastName: 'Alexander '
+        age: 34
     defaultValue:
-      FirstName: 
-      LastName: 
-      Age: 0
+      firstName: Default
+      lastName: Polanski
+      age: 134
